@@ -1,0 +1,28 @@
+{
+  "name": "read-all",
+  "version": "1.0.0",
+  "description": "Read all data from a Readable stream in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rousan/read-all.git"
+  },
+  "keywords": [
+    "node",
+    "stream",
+    "readable",
+    "read",
+    "all",
+    "buffer",
+    "bytes"
+  ],
+  "author": "Rousan Ali <rousanali786@gmail.com> (https://rousan.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rousan/read-all/issues"
+  },
+  "homepage": "https://github.com/rousan/read-all#readme"
+}
