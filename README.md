@@ -1,91 +1,67 @@
 [![Build Status](https://travis-ci.org/rousan/read-all.svg?branch=develop)](https://travis-ci.org/rousan/read-all)
+[![codecov](https://codecov.io/gh/rousan/read-all/branch/develop/graph/badge.svg)](https://codecov.io/gh/rousan/read-all)
 [![NPM version](https://img.shields.io/npm/v/node-read-all.svg)](https://www.npmjs.com/package/node-read-all)
 [![NPM total downloads](https://img.shields.io/npm/dt/node-read-all.svg)](https://www.npmjs.com/package/node-read-all)
 [![Contributors](https://img.shields.io/github/contributors/rousan/read-all.svg)](https://github.com/rousan/read-all/graphs/contributors)
 [![License](https://img.shields.io/github/license/rousan/read-all.svg)](https://github.com/rousan/read-all/blob/master/LICENSE)
 
-# sl
+# read-all
 
-A tiny and useful tool to list all `npm` scripts from `package.json` file.
-
-> sl = script list
-
-## Requirements
-
-`node` >= `v4.0.0`
-
-**Note**: If `node` and `npm` are not installed, Install them from [here](https://nodejs.org/en/download/).
+Read all data from a Readable stream and get notified when Promise is resolved.
 
 ## Installation
 
-Install it from `npm`:
+Using npm:
 
 ```bash
-$ npm install -g read-all
+$ npm install node-read-all
+```
+
+Using yarn:
+
+```bash
+$ yarn add node-read-all
 ```
 
 ## Usage
 
-Access it from terminal or command prompt by `sl` command.
+```javascript
+const fs = require("fs");
+const readAll = require("node-read-all");
 
-```bash
-$ sl
-
-   MyAwesomeProject
-    - build           : babel src -d lib
-    - start           : node node_modules/react-native/local-cli/cli.js start
-    - test            : jest --coverage --verbose
-
+const rStream = fs.createReadStream("file.txt");
+rStream.setEncoding("utf8");
+readAll(rStream)
+  .then(data => console.log(data))
+  .catch(console.error.bind(console));
 ```
 
-### Script List for Multiple Projects
+When stream is in object mode:
 
-```bash
-$ sl MyAwesomeProject MyAwesomeProject2
+```javascript
+const readAll = require("node-read-all");
 
-   MyAwesomeProject
-    - build           : babel src -d lib
-    - start           : node node_modules/react-native/local-cli/cli.js start
-    - test            : jest --coverage --verbose
+const transformStream = new Transform({
+      readableObjectMode: true,
+      transform(chunk, encoding, callback) {
+        this.push({ value: chunk.toString() });
+        callback();
+      },
+    });
 
+readAll(rStream)
+  .then(data => console.log(data))
+  .catch(console.error.bind(console));
 
-   MyAwesomeProject2
-    - ng        : ng
-    - test:e2e  : ng e2e
-    - test:unit : ng test
-    - test      : ng e2e && ng test
-
-```
-
-### Use Globbing
-
-```bash
-$ sl **/*
-
-   MyProject1
-    - build           : babel src -d lib
-    - start           : node node_modules/react-native/local-cli/cli.js start
-    - test            : jest --coverage --verbose
-
-
-   MyProject2
-    - ng        : ng
-    - test:e2e  : ng e2e
-    - test:unit : ng test
-    - test      : ng e2e && ng test
-
-
-   MyProject3
-    - build : babel src -d lib
-    - start : node src/cli.js
-    - test  : mocha test
+setTimeout(() => {
+    transformStream.write('a');
+    transformStream.write('b');
+    transformStream.write('c');
+    transformStream.end();
+}, 1000);
 
 ```
-
-**Note**: It has built-in support for path `globbing` on `windows`.
 
 ## Contributing
 
 Your PRs and stars are always welcome.
-
-Checkout the [CONTRIBUTING](https://github.com/rousan/sl/blob/master/CONTRIBUTING.md) guides.
