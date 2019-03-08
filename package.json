@@ -1,10 +1,11 @@
 {
-  "name": "read-all",
+  "name": "node-read-all",
   "version": "1.0.0",
-  "description": "Read all data from a Readable stream in nodejs",
+  "description": "Read all data from a Readable stream with Promise",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js"
+    "test": "nyc --reporter=html --reporter=text mocha *.spec.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage/coverage.lcov"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
     "read",
     "all",
     "buffer",
-    "bytes"
+    "bytes",
+    "promise",
+    "async",
+    "await"
   ],
   "author": "Rousan Ali <rousanali786@gmail.com> (https://rousan.io)",
   "license": "MIT",
@@ -34,6 +38,7 @@
     "eslint-plugin-import": "^2.16.0",
     "into-stream": "^4.0.0",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "stream-buffers": "^3.0.2"
   }
 }
