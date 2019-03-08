@@ -4,7 +4,7 @@
   "description": "Read all data from a Readable stream in nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha *.spec.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,16 @@
   "bugs": {
     "url": "https://github.com/rousan/read-all/issues"
   },
-  "homepage": "https://github.com/rousan/read-all#readme"
+  "homepage": "https://github.com/rousan/read-all#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "into-stream": "^4.0.0",
+    "mocha": "^6.0.2",
+    "stream-buffers": "^3.0.2"
+  }
 }
