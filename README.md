@@ -26,11 +26,11 @@ $ yarn add node-read-all
 ## Usage
 
 ```javascript
-const fs = require("fs");
-const readAll = require("node-read-all");
+const fs = require('fs');
+const readAll = require('node-read-all');
 
-const rStream = fs.createReadStream("file.txt");
-rStream.setEncoding("utf8");
+const rStream = fs.createReadStream('file.txt');
+rStream.setEncoding('utf8');
 readAll(rStream)
   .then(data => console.log(data))
   .catch(console.error.bind(console));
@@ -39,27 +39,27 @@ readAll(rStream)
 When stream is in object mode:
 
 ```javascript
-const readAll = require("node-read-all");
+const { Transform } = require('stream');
+const readAll = require('node-read-all');
 
 const transformStream = new Transform({
-      readableObjectMode: true,
-      transform(chunk, encoding, callback) {
-        this.push({ value: chunk.toString() });
-        callback();
-      },
-    });
+  readableObjectMode: true,
+  transform(chunk, encoding, callback) {
+    this.push({ value: chunk.toString() });
+    callback();
+  },
+});
 
-readAll(rStream)
+readAll(transformStream)
   .then(data => console.log(data))
   .catch(console.error.bind(console));
 
 setTimeout(() => {
-    transformStream.write('a');
-    transformStream.write('b');
-    transformStream.write('c');
-    transformStream.end();
+  transformStream.write('a');
+  transformStream.write('b');
+  transformStream.write('c');
+  transformStream.end();
 }, 1000);
-
 ```
 
 ## Contributing
