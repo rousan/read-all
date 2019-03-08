@@ -1,0 +1,44 @@
+{
+  "name": "node-read-all",
+  "version": "1.0.0",
+  "description": "Read all data from a Readable stream with Promise",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha *.spec.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage/coverage.lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rousan/read-all.git"
+  },
+  "keywords": [
+    "node",
+    "stream",
+    "readable",
+    "read",
+    "all",
+    "buffer",
+    "bytes",
+    "promise",
+    "async",
+    "await"
+  ],
+  "author": "Rousan Ali <rousanali786@gmail.com> (https://rousan.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rousan/read-all/issues"
+  },
+  "homepage": "https://github.com/rousan/read-all#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "into-stream": "^4.0.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "stream-buffers": "^3.0.2"
+  }
+}
